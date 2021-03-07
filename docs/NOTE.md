@@ -35,6 +35,10 @@ pip install django
   - Procfile
   - runtime.txt
 
+- Procfile
+  - `web: gunicorn --pythonpath src core.wsgi --log-file -`
+  - Here project name is core. And core is situated inside src directory.
+
 ## Environmental Variables
 
 - For PostgreSQL
