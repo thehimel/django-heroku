@@ -15,6 +15,7 @@ pip install flake8
 pip install gunicorn
 pip install dj-database-url
 pip install python-decouple
+pip install whitenoise
 
 # One time command
 django-admin startproject core

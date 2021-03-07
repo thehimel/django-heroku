@@ -1,6 +1,8 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <a href="{% url 'app:home' %}">Home</a>
-    <p>Hello World!</p>
-</html>
+{% block content %}
+
+<a class="link-color" href="{% url 'app:home' %}">Home</a>
+<p>Hello World!</p>
+
+{% endblock content %}

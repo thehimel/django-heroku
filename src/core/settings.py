@@ -54,7 +54,14 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    # Part of base
     'django.middleware.security.SecurityMiddleware',
+
+    # From WhiteNoise to serve static files in Heroku from Django
+    # Remove this if you are using S3
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+
+    # Part of base
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,5 +146,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
-
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static_files']
+STATIC_ROOT = BASE_DIR / 'static'
+
+# Media files (Uploaded by the users)
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
