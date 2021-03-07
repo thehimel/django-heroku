@@ -61,3 +61,9 @@ python ./src/manage.py makemigrations
 python ./src/manage.py migrate
 python ./src/manage.py createsuperuser
 ```
+
+## Connect the Heroku PostgresSQL DB to local pgAdmin
+
+- Get the DATABASE_URL from Heroku
+- DATABASE_URL = postgres://username:password@host:port/db_name
+- In the pgAdmin, connect ot the PostgreSQL server using the credentials.
