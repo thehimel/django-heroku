@@ -38,7 +38,7 @@ except Exception:
     DEBUG = True
     DEV = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
