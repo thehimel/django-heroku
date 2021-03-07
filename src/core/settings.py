@@ -103,12 +103,8 @@ if DEV is True:
     }
 
 elif DEV is False:
-    # Fetch the env var with decouple
-    DATABASE_URL = config('DATABASE_URL')
-    # create db dictionary with dj_database_url from DATABASE_URL
-    postgres_db = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
-    # DATABASES = {} is declared in the base.py
-    DATABASES['default'] = postgres_db
+    DATABASES['default'] = dj_database_url.config(
+        conn_max_age=600, ssl_require=True)
 
 
 # Password validation
