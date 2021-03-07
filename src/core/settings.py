@@ -32,12 +32,12 @@ SECRET_KEY = 'dl3@ku5*n5xbpn-u5n0y@#07kl*1a^_!agar2rcxifxf*sw0&d'
 # SECURITY WARNING: don't run with debug turned on in production!
 # True for development server, false for production server.
 try:
-    DEBUG = config('DEBUG')
+    DEBUG = config('DEBUG', cast=bool)
 except Exception:
     DEBUG = True
 
 try:
-    DEV = config('DEV')
+    DEV = config('DEV', cast=bool)
 except Exception:
     DEV = True
 
@@ -97,7 +97,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if DEV is True:
+if DEV:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -105,7 +105,8 @@ if DEV is True:
         }
     }
 
-elif DEV is False:
+else:
+    DATABASES = {}
     DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
