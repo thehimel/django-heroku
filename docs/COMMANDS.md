@@ -11,6 +11,11 @@ pip install psycopg2
 pip install autopep8
 pip install flake8
 
+# Package for heroku
+pip install gunicorn
+pip install dj-database-url
+pip install python-decouple
+
 # One time command
 django-admin startproject core
 python manage.py startapp app

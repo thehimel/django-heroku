@@ -1,3 +1,5 @@
+# flake8: noqa
+
 """
 Django settings for core project.
 
@@ -10,7 +12,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
+from decouple import config
 from pathlib import Path
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,10 +30,15 @@ TEMPLATE_DIR = BASE_DIR / 'templates'
 SECRET_KEY = 'dl3@ku5*n5xbpn-u5n0y@#07kl*1a^_!agar2rcxifxf*sw0&d'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# True for development server, false for production server.
+try:
+    DEBUG = config('DEBUG')
+    DEV = config('DEV')
+except Exception:
+    DEBUG = True
+    DEV = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -78,12 +87,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if DEV is True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+
+elif DEV is False:
+    # Fetch the env var with decouple
+    DATABASE_URL = config('DATABASE_URL')
+    # create db dictionary with dj_database_url from DATABASE_URL
+    postgres_db = dj_database_url.parse(DATABASE_URL, conn_max_age=600)
+    # DATABASES = {} is declared in the base.py
+    DATABASES['default'] = postgres_db
 
 
 # Password validation

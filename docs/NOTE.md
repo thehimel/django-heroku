@@ -27,3 +27,21 @@ pip freeze > requirements.txt
 
 pip install django
 ```
+
+## Configure Project for Heroku
+
+- Create the following files in the root directory.
+  - requirements.txt
+  - Procfile
+  - runtime.txt
+
+## Environmental Variables
+
+- For PostgreSQL
+  - DEV = False
+  - DATABASE_URL = YOUR_DATABASE_URL
+
+- For SQLite
+  - Configuration not required.
+  - When DEV is not set as environmental variable, DEV = True.
+  - If DEV = True, SQLite is used.
