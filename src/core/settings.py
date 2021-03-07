@@ -33,9 +33,12 @@ SECRET_KEY = 'dl3@ku5*n5xbpn-u5n0y@#07kl*1a^_!agar2rcxifxf*sw0&d'
 # True for development server, false for production server.
 try:
     DEBUG = config('DEBUG')
-    DEV = config('DEV')
 except Exception:
     DEBUG = True
+
+try:
+    DEV = config('DEV')
+except Exception:
     DEV = True
 
 ALLOWED_HOSTS = ['*']
