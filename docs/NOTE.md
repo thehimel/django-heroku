@@ -49,3 +49,15 @@ pip install django
   - Configuration not required.
   - When DEV is not set as environmental variable, DEV = True.
   - If DEV = True, SQLite is used.
+
+## Deploying in Heroku
+
+- Create an app in Heroku and attach the git repository with it.
+- Set environment variable DEV = False
+- In the heroku console, run the following commands.
+
+```shell
+python ./src/manage.py makemigrations
+python ./src/manage.py migrate
+python ./src/manage.py createsuperuser
+```
